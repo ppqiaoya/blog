@@ -3,8 +3,10 @@
     <words>
       <w>addarticle</w>
       <w>articledetails</w>
+      <w>ckeditor</w>
       <w>listpic</w>
       <w>newslistpic</w>
+      <w>setmd</w>
     </words>
   </dictionary>
 </component>

@@ -13,7 +13,10 @@ def about(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    article=Article.objects.order_by('-date')[:6]
+    recommend_article=Article.objects.filter(recommend=1).all()[:7]
+    click_article=Article.objects.order_by('-click')[:12]
+    return render(request, 'index.html',locals())
 
 
 def listpic(request):
@@ -59,3 +62,35 @@ def addarticle(request):
     # article.type.add(Type.objects.get(id=1))
     # article.save()
     return HttpResponse('okokokoklllllll')
+
+def formtest(request):
+    # data=request.GET
+    # search=data.get('search')
+    # print(search)
+    #
+    # article=Article.objects.filter(title__contains=search).all()
+    # print(article)
+
+    print(request.method)
+    data=request.POST
+    print(data.get('usr'))
+    print(data.get('pwd'))
+    return render(request,'form.html',locals())
+
+import hashlib
+def setmd5(password):
+    md5=hashlib.md5()
+    md5.update(password.encode())
+    result=md5.hexdigest()
+    return result
+
+def zc(request):
+    if request.method=='POST':
+        username=request.POST.get('usr')
+        password=request.POST.get('pwd')
+        if username and password:
+            user=Yh()
+            user.username=username
+            user.password=setmd5(password)
+            user.save()
+    return render(request,'zc.html',locals())

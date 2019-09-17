@@ -37,4 +37,10 @@ urlpatterns = [
 
     path('addarticle/', views.addarticle),
 
+    path('ckeditor/',include('ckeditor_uploader.urls')),
+
+    path('formtest/',views.formtest),
+
+    path('zc/',views.zc)
+
 ]
